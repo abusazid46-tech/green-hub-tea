@@ -53,6 +53,7 @@ const greenTea = "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto
 const looseLeaf = "https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?auto=format&fit=crop&w=1200&q=82";
 const teaCup = "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=1200&q=82";
 const ctc = "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=82";
+const assamTeaHero = "https://images.pexels.com/photos/36906757/pexels-photo-36906757.jpeg?auto=compress&cs=tinysrgb&w=2200&h=1400&fit=crop";
 
 export const products: Product[] = [
   {
@@ -245,4 +246,4 @@ export const blogPosts = [
   }
 ];
 
-export const heroImage = teaGarden;
+export const heroImage = assamTeaHero;

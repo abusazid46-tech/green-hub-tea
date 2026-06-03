@@ -21,8 +21,9 @@ export default function HomePage() {
   return (
     <>
       <section className="relative min-h-[92vh] overflow-hidden bg-brand-dark pt-24 text-white">
-        <Image src={heroImage} alt="Assam tea garden" fill priority sizes="100vw" className="object-cover opacity-45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-forest via-brand-forest/76 to-brand-dark/40" />
+        <Image src={heroImage} alt="Lush Assam tea plantation" fill priority sizes="100vw" className="object-cover object-[62%_center] opacity-60 saturate-125" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-forest/72 to-brand-dark/22" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.16),rgba(15,61,46,0.18))]" />
         <div className="container-x relative z-10 grid min-h-[calc(92vh-96px)] items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr]">
           <MotionReveal>
             <Badge className="border-white/30 bg-white/12 text-brand-accent">Premium Assam Tea Supplier</Badge>
