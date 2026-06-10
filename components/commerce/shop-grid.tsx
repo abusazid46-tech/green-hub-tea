@@ -5,11 +5,11 @@ import { SlidersHorizontal } from "lucide-react";
 import { ProductCard } from "@/components/commerce/product-card";
 import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
-import { products } from "@/lib/data";
+import type { Product } from "@/lib/data";
 
 const categories = ["All", "Orthodox Tea", "Black Tea", "Green Tea", "CTC Tea", "Tea Dust"];
 
-export function ShopGrid() {
+export function ShopGrid({ products }: { products: Product[] }) {
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("popular");
   const [price, setPrice] = useState("all");
@@ -23,7 +23,7 @@ export function ShopGrid() {
     if (sort === "latest") items = [...items].reverse();
     if (sort === "popular") items = [...items].sort((a, b) => Number(Boolean(b.popular)) - Number(Boolean(a.popular)));
     return items;
-  }, [category, price, sort]);
+  }, [category, price, products, sort]);
 
   return (
     <div>

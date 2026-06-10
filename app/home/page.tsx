@@ -7,9 +7,12 @@ import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { blogPosts, buyerTypes, heroImage, highlights, products, whyChoose } from "@/lib/data";
+import { blogPosts, buyerTypes, heroImage, highlights, whyChoose } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
+import { getStoreProducts } from "@/lib/supabase/products";
 import { whatsappLink } from "@/lib/utils";
+
+export const revalidate = 60;
 
 export const metadata = pageMetadata(
   "Green Hub Assam Tea",
@@ -17,7 +20,9 @@ export const metadata = pageMetadata(
   "/home"
 );
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getStoreProducts();
+
   return (
     <>
       <section className="relative min-h-[92vh] overflow-hidden bg-brand-dark pt-24 text-white">

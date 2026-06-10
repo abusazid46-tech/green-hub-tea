@@ -10,8 +10,11 @@ import { JsonLd } from "@/components/json-ld";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { products } from "@/lib/data";
+import { getStoreProductBySlug } from "@/lib/supabase/products";
 import { formatInr, whatsappLink } from "@/lib/utils";
 import { pageMetadata, productSchema } from "@/lib/seo";
+
+export const revalidate = 60;
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -23,14 +26,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find((item) => item.slug === slug);
+  const product = await getStoreProductBySlug(slug);
   if (!product) return pageMetadata("Product Not Found", "Green Hub Assam Tea product page.");
   return pageMetadata(product.name, product.description, `/product/${product.slug}`);
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = products.find((item) => item.slug === slug);
+  const product = await getStoreProductBySlug(slug);
   if (!product) notFound();
 
   return (

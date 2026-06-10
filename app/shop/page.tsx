@@ -1,6 +1,9 @@
 import { ShopGrid } from "@/components/commerce/shop-grid";
 import { SectionHeading } from "@/components/section-heading";
 import { pageMetadata } from "@/lib/seo";
+import { getStoreProducts } from "@/lib/supabase/products";
+
+export const revalidate = 60;
 
 export const metadata = pageMetadata(
   "Shop Premium Assam Tea",
@@ -8,7 +11,9 @@ export const metadata = pageMetadata(
   "/shop"
 );
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const products = await getStoreProducts();
+
   return (
     <section className="min-h-screen bg-brand-cream pt-32 section-padding">
       <div className="container-x">
@@ -18,7 +23,7 @@ export default function ShopPage() {
           text="Filter by tea type, price, category, and popularity. Product inquiries route directly to WhatsApp for fast buying conversations."
         />
         <div className="mt-12">
-          <ShopGrid />
+          <ShopGrid products={products} />
         </div>
       </div>
     </section>

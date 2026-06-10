@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -11,6 +12,7 @@ import { InquiryFormValues, inquirySchema } from "@/lib/forms";
 import { mailtoLink, whatsappLink } from "@/lib/utils";
 
 export function InquiryForm({ mode = "Wholesale" }: { mode?: "Wholesale" | "Export" | "Contact" }) {
+  const [submitNote, setSubmitNote] = useState("");
   const form = useForm<InquiryFormValues>({
     resolver: zodResolver(inquirySchema),
     defaultValues: {
@@ -24,7 +26,7 @@ export function InquiryForm({ mode = "Wholesale" }: { mode?: "Wholesale" | "Expo
     }
   });
 
-  const onSubmit = (values: InquiryFormValues) => {
+  const onSubmit = async (values: InquiryFormValues) => {
     const message = [
       `Inquiry Type: ${values.inquiryType}`,
       `Name: ${values.name}`,
@@ -34,6 +36,13 @@ export function InquiryForm({ mode = "Wholesale" }: { mode?: "Wholesale" | "Expo
       `Quantity: ${values.quantity} kg`,
       `Message: ${values.message}`
     ].join("\n");
+
+    setSubmitNote("Saving inquiry and opening WhatsApp/email...");
+    await fetch("/api/inquiries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values)
+    }).catch(() => null);
 
     window.open(whatsappLink(message), "_blank", "noreferrer");
     window.location.href = mailtoLink(`Green Hub ${values.inquiryType} Inquiry`, message);
@@ -91,6 +100,7 @@ export function InquiryForm({ mode = "Wholesale" }: { mode?: "Wholesale" | "Expo
         <Send className="h-4 w-4" />
         Send To WhatsApp & Email
       </Button>
+      {submitNote ? <p className="text-sm font-medium text-brand-forest">{submitNote}</p> : null}
     </form>
   );
 }
