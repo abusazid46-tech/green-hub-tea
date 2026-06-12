@@ -39,6 +39,11 @@ export type ProductRow = {
   sort_order?: number;
 };
 
+const specValueSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]).transform((value) => {
+  if (value === null) return "";
+  return String(value);
+});
+
 export const productInputSchema = z.object({
   slug: z.string().min(2),
   name: z.string().min(2),
@@ -49,7 +54,7 @@ export const productInputSchema = z.object({
   image: z.string().url(),
   gallery: z.array(z.string().url()).default([]),
   benefits: z.array(z.string().min(1)).default([]),
-  specs: z.record(z.string(), z.string()).default({}),
+  specs: z.record(z.string(), specValueSchema).default({}),
   notes: z.array(z.string().min(1)).default([]),
   strength: z.number().min(0).max(100).default(50),
   brew: z.object({

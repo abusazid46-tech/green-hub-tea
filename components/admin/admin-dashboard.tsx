@@ -83,6 +83,17 @@ function productToForm(product: Product): ProductFormState {
   };
 }
 
+function getProductSaveMessage(body: { error?: string; issues?: { fieldErrors?: Record<string, string[]>; formErrors?: string[] } }) {
+  const fieldErrors = body.issues?.fieldErrors || {};
+  const details = Object.entries(fieldErrors)
+    .flatMap(([field, errors]) => errors.map((error) => `${field}: ${error}`))
+    .join("; ");
+
+  if (details) return `${body.error || "Product save failed."} ${details}`;
+  if (body.issues?.formErrors?.length) return `${body.error || "Product save failed."} ${body.issues.formErrors.join("; ")}`;
+  return body.error || "Product save failed.";
+}
+
 export function AdminDashboard() {
   const supabase = useMemo(() => getSupabaseBrowserClient(), []);
   const [session, setSession] = useState<Session | null>(null);
@@ -231,7 +242,7 @@ export function AdminDashboard() {
     setLoading(false);
 
     if (!response.ok) {
-      setMessage(body.error || "Product save failed.");
+      setMessage(getProductSaveMessage(body));
       return;
     }
 
