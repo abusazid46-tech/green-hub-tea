@@ -39,6 +39,29 @@ export type ProductRow = {
   sort_order?: number;
 };
 
+export type CategoryRow = {
+  id?: string;
+  slug: string;
+  name: string;
+  description?: string | null;
+  active?: boolean;
+  sort_order?: number;
+  created_at?: string;
+};
+
+export type PaymentRow = {
+  id?: string;
+  customer_name: string;
+  customer_email?: string | null;
+  product_slug?: string | null;
+  amount: number;
+  currency: string;
+  status: "paid" | "pending" | "failed" | "refunded";
+  provider: string;
+  payment_reference?: string | null;
+  created_at?: string;
+};
+
 const specValueSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]).transform((value) => {
   if (value === null) return "";
   return String(value);
@@ -69,3 +92,25 @@ export const productInputSchema = z.object({
 });
 
 export type ProductInput = z.infer<typeof productInputSchema>;
+
+export const categoryInputSchema = z.object({
+  slug: z.string().min(2).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers, and hyphens."),
+  name: z.string().min(2),
+  description: z.string().optional().default(""),
+  active: z.boolean().default(true),
+  sort_order: z.number().int().default(0)
+});
+
+export const paymentInputSchema = z.object({
+  customer_name: z.string().min(2),
+  customer_email: z.string().email().optional().or(z.literal("")).transform((value) => value || null),
+  product_slug: z.string().optional().or(z.literal("")).transform((value) => value || null),
+  amount: z.number().min(0),
+  currency: z.string().min(3).max(3).default("INR"),
+  status: z.enum(["paid", "pending", "failed", "refunded"]).default("pending"),
+  provider: z.string().min(2).default("manual"),
+  payment_reference: z.string().optional().or(z.literal("")).transform((value) => value || null)
+});
+
+export type CategoryInput = z.infer<typeof categoryInputSchema>;
+export type PaymentInput = z.infer<typeof paymentInputSchema>;

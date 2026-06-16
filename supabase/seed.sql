@@ -1,3 +1,13 @@
+insert into public.categories (
+  slug, name, description, sort_order
+) values
+  ('orthodox-tea', 'Orthodox Tea', 'Premium long-leaf Assam teas for refined retail and export assortments.', 10),
+  ('black-tea', 'Black Tea', 'Strong aromatic Assam black teas for daily cups, cafes, and hospitality buyers.', 20),
+  ('green-tea', 'Green Tea', 'Fresh wellness-led Assam green tea selections.', 30),
+  ('ctc-tea', 'CTC Tea', 'Brisk bulk-friendly tea grades for strong liquor and food service.', 40),
+  ('tea-dust', 'Tea Dust', 'Fast-brewing tea dust and powder for mass service and chai programs.', 50)
+on conflict (slug) do nothing;
+
 insert into public.products (
   slug, name, category, short, description, price, image, gallery, benefits, specs, notes, strength, brew, popular, sort_order
 ) values
