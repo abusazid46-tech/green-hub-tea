@@ -312,8 +312,14 @@ export function AdminDashboard() {
       setPayments(paymentJson.payments || []);
       setAnalytics(analyticsJson.analytics || defaultAnalytics);
 
-      if (analyticsJson.warnings?.length) {
-        setMessage(`${analyticsJson.warnings.join(" ")} Run the updated Supabase schema if this is a new admin deployment.`);
+      const warnings = [
+        categoryJson.warning,
+        paymentJson.warning,
+        ...(analyticsJson.warnings || [])
+      ].filter(Boolean);
+
+      if (warnings.length) {
+        setMessage(`${warnings.join(" ")} Run the updated Supabase schema if this is a new admin deployment.`);
       }
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Admin data could not be loaded.");
@@ -398,6 +404,7 @@ export function AdminDashboard() {
       return;
     }
 
+    const gallery = linesToArray(productForm.gallery);
     const response = await fetch("/api/products", {
       method: "POST",
       headers: authHeaders(),
@@ -409,7 +416,7 @@ export function AdminDashboard() {
         description: productForm.description,
         price: Number(productForm.price),
         image: productForm.image,
-        gallery: linesToArray(productForm.gallery),
+        gallery: gallery.length ? gallery : linesToArray(productForm.image),
         benefits: linesToArray(productForm.benefits),
         notes: linesToArray(productForm.notes),
         specs,

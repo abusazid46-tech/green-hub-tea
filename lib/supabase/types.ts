@@ -67,6 +67,13 @@ const specValueSchema = z.union([z.string(), z.number(), z.boolean(), z.null()])
   return String(value);
 });
 
+const fallbackProductImage = "https://images.pexels.com/photos/36906757/pexels-photo-36906757.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop";
+
+const optionalUrlWithFallback = z.preprocess((value) => {
+  if (typeof value !== "string") return value;
+  return value.trim() || fallbackProductImage;
+}, z.string().url());
+
 export const productInputSchema = z.object({
   slug: z.string().min(2),
   name: z.string().min(2),
@@ -74,7 +81,7 @@ export const productInputSchema = z.object({
   short: z.string().min(5),
   description: z.string().min(10),
   price: z.number().min(0),
-  image: z.string().url(),
+  image: optionalUrlWithFallback,
   gallery: z.array(z.string().url()).default([]),
   benefits: z.array(z.string().min(1)).default([]),
   specs: z.record(z.string(), specValueSchema).default({}),

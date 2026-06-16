@@ -3,6 +3,10 @@ import { verifyAdminRequest } from "@/lib/supabase/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 import { categoryInputSchema } from "@/lib/supabase/types";
 
+function isMissingTableError(error: { code?: string; message?: string }) {
+  return error.code === "42P01" || Boolean(error.message?.toLowerCase().includes("does not exist"));
+}
+
 export async function GET(request: Request) {
   const auth = await verifyAdminRequest(request);
   if (!auth.ok) return auth.response;
@@ -19,6 +23,14 @@ export async function GET(request: Request) {
     .order("created_at", { ascending: false });
 
   if (error) {
+    if (isMissingTableError(error)) {
+      return NextResponse.json({
+        categories: [],
+        setupRequired: true,
+        warning: "Categories table is missing. Run the latest supabase/schema.sql in Supabase SQL Editor."
+      });
+    }
+
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
@@ -48,6 +60,12 @@ export async function POST(request: Request) {
     .single();
 
   if (error) {
+    if (isMissingTableError(error)) {
+      return NextResponse.json({
+        error: "Categories table is missing. Run the latest supabase/schema.sql in Supabase SQL Editor."
+      }, { status: 409 });
+    }
+
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
