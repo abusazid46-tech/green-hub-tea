@@ -5,8 +5,8 @@ import { blogPosts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
-  "Tea Knowledge Center",
-  "Assam tea guides covering benefits, green tea, black tea, brewing, and why Assam tea is world famous.",
+  "Assam Tea Knowledge Center",
+  "Assam tea guides covering benefits, Green Tea, Black Tea, brewing methods, CTC Tea, and why Assam tea is world famous.",
   "/blog"
 );
 

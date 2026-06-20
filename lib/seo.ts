@@ -1,27 +1,37 @@
 import type { Metadata } from "next";
-import { brand, products } from "@/lib/data";
+import { brand, heroImage, products } from "@/lib/data";
 
 const titleBase = "Green Hub Assam Tea";
 
 export function pageMetadata(title: string, description: string, path = ""): Metadata {
   const url = `${brand.siteUrl}${path}`;
+  const fullTitle = title === titleBase ? title : `${title} | ${titleBase}`;
 
   return {
-    title: title === titleBase ? title : `${title} | ${titleBase}`,
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url,
       siteName: titleBase,
       locale: "en_IN",
-      type: "website"
+      type: "website",
+      images: [
+        {
+          url: heroImage,
+          width: 1200,
+          height: 630,
+          alt: "Green Hub Assam tea garden"
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description
+      title: fullTitle,
+      description,
+      images: [heroImage]
     },
     keywords: [
       "Assam Tea",
@@ -31,7 +41,11 @@ export function pageMetadata(title: string, description: string, path = ""): Met
       "Assam Black Tea",
       "Wholesale Tea Supplier India",
       "Tea Exporter Assam",
-      "Bulk Tea Supplier"
+      "Bulk Tea Supplier",
+      "Green Hub Assam",
+      "Guwahati Tea Supplier",
+      "CTC Tea Supplier",
+      "Assam Gold Orthodox Tea"
     ]
   };
 }
@@ -39,9 +53,14 @@ export function pageMetadata(title: string, description: string, path = ""): Met
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
+    "@id": `${brand.siteUrl}/#organization`,
     name: brand.legalName,
+    alternateName: brand.name,
     url: brand.siteUrl,
+    logo: `${brand.siteUrl}/brand/greenhub-logo.png`,
+    image: `${brand.siteUrl}/brand/greenhub-logo.png`,
+    description: "Green Hub is a Guwahati-based wholesale supplier of premium Assam Tea, CTC Tea, Black Tea, and Assam Gold Orthodox Tea.",
     foundingDate: brand.founded,
     address: {
       "@type": "PostalAddress",
@@ -54,6 +73,15 @@ export function organizationSchema() {
     telephone: brand.phone,
     email: brand.email,
     taxID: brand.gst,
+    areaServed: ["India", "Worldwide"],
+    knowsAbout: [
+      "Assam Tea",
+      "CTC Tea",
+      "Black Tea",
+      "Assam Orthodox Tea",
+      "Bulk Tea Supply",
+      "Wholesale Tea Distribution"
+    ],
     makesOffer: products.map((product) => product.name)
   };
 }
@@ -68,6 +96,8 @@ export function productSchema(slug: string) {
     name: product.name,
     description: product.description,
     image: product.image,
+    url: `${brand.siteUrl}/product/${product.slug}`,
+    sku: product.slug,
     brand: {
       "@type": "Brand",
       name: brand.name
@@ -78,6 +108,7 @@ export function productSchema(slug: string) {
       priceCurrency: "INR",
       price: product.price,
       availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
       url: `${brand.siteUrl}/product/${product.slug}`
     }
   };

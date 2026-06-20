@@ -16,7 +16,7 @@ export const revalidate = 60;
 
 export const metadata = pageMetadata(
   "Green Hub Assam Tea",
-  "Premium Assam tea supplier and manufacturer from Guwahati for retail, wholesale, distributors, hotels, cafes, and export buyers.",
+  "Green Hub is a Guwahati-based wholesale Assam tea supplier for Assam Tea, CTC Tea, Black Tea, and Assam Gold Orthodox Tea across India.",
   "/home"
 );
 

@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "Assam Tea Export Inquiry",
-  "Export inquiry page for international buyers seeking premium Assam tea from Green Hub, Guwahati.",
+  "Assam tea export inquiry page for international buyers seeking premium CTC Tea, Black Tea, and Orthodox Tea from Green Hub Guwahati.",
   "/export"
 );
 

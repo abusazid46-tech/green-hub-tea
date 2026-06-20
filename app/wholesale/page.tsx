@@ -5,8 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
-  "Wholesale Assam Tea",
-  "Dealer registration, MOQ calculator, bulk pricing request, distributor application, and private label inquiry for Green Hub Assam Tea.",
+  "Wholesale Assam Tea Supplier India",
+  "Wholesale Assam tea supplier for bulk CTC Tea, Black Tea, Orthodox Tea, dealer registration, distributors, and private label inquiries.",
   "/wholesale"
 );
 

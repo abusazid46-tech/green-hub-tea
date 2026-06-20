@@ -6,8 +6,8 @@ import { brand } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
-  "Contact Green Hub",
-  "Contact Green Hub Assam Tea in Guwahati for retail, wholesale, bulk, distributor, and export inquiries.",
+  "Contact Green Hub Assam Tea",
+  "Contact Green Hub Assam Tea in Guwahati for wholesale Assam tea, CTC Tea, Black Tea, distributor, bulk, and export inquiries.",
   "/contact"
 );
 

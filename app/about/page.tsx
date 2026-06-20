@@ -10,8 +10,8 @@ import { pageMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/utils";
 
 export const metadata = pageMetadata(
-  "About Green Hub",
-  "Learn about Green Hub, a Guwahati-based wholesale supplier of premium Assam Tea, CTC Tea, Black Tea, and Assam Gold Orthodox Tea.",
+  "About Green Hub Assam Tea Supplier",
+  "About Green Hub, a trusted wholesale supplier of premium Assam Tea, CTC Tea, Black Tea, and Assam Gold Orthodox Tea based in Guwahati.",
   "/about"
 );
 

@@ -22,7 +22,7 @@ export const brand = {
   founded: "2018",
   address: "House no 9A, Ground Floor, Padma Path, Zoo Road Tiniali, RG Baruah Road, Guwahati, Assam 781024",
   location: "Guwahati, Assam, India",
-  siteUrl: "https://greenhubassamtea.vercel.app"
+  siteUrl: "https://www.greenhubassam.com"
 };
 
 export type Product = {

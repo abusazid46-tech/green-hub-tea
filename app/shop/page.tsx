@@ -6,8 +6,8 @@ import { getStoreProducts } from "@/lib/supabase/products";
 export const revalidate = 60;
 
 export const metadata = pageMetadata(
-  "Shop Premium Assam Tea",
-  "Shop Green Hub Assam Orthodox Tea, Assam Black Tea, Assam Green Tea, Black Tea BOPSM, and Black Tea Dust Powder.",
+  "Shop Premium Assam Tea Online",
+  "Shop premium Assam Orthodox Tea, Assam Black Tea, Assam Green Tea, CTC BOPSM, and Tea Dust from Green Hub Assam.",
   "/shop"
 );
 
