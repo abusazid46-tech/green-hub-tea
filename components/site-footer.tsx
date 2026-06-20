@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { brand, products } from "@/lib/data";
@@ -7,7 +8,12 @@ export function SiteFooter() {
     <footer className="bg-brand-dark text-white">
       <div className="container-x grid gap-10 py-14 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
         <div>
-          <p className="font-display text-3xl">Green Hub Assam Tea</p>
+          <div className="flex items-center gap-3">
+            <span className="relative h-14 w-14 overflow-hidden rounded-md border border-white/15 bg-white">
+              <Image src="/brand/greenhub-logo.webp" alt="Green Hub logo" fill sizes="56px" className="object-cover" />
+            </span>
+            <p className="font-display text-3xl leading-none">Green Hub Assam Tea</p>
+          </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/68">
             Premium Assam tea supplier and manufacturer from Guwahati, serving retail, wholesale, hospitality, distributor, and export buyers.
           </p>

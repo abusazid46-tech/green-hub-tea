@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, ShoppingBag, X } from "lucide-react";
@@ -24,8 +25,8 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/15 bg-brand-forest/85 text-white backdrop-blur-xl">
       <div className="container-x flex h-18 items-center justify-between">
         <Link href="/home" className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-md border border-brand-gold/50 bg-brand-gold text-brand-forest">
-            <ShoppingBag className="h-5 w-5" aria-hidden />
+          <span className="relative h-12 w-12 overflow-hidden rounded-md border border-white/20 bg-white shadow-gold">
+            <Image src="/brand/greenhub-logo.webp" alt="Green Hub logo" fill sizes="48px" className="object-cover" priority />
           </span>
           <span>
             <span className="block font-display text-xl leading-none">Green Hub</span>

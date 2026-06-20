@@ -17,7 +17,14 @@ export const metadata: Metadata = {
     default: "Green Hub Assam Tea",
     template: "%s | Green Hub Assam Tea"
   },
-  description: "Premium Assam tea supplier and manufacturer from Guwahati for retail, wholesale, hotel, distributor, and export buyers."
+  description: "Premium Assam tea supplier and manufacturer from Guwahati for retail, wholesale, hotel, distributor, and export buyers.",
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "64x64" },
+      { url: "/brand/greenhub-icon-192.png", type: "image/png", sizes: "192x192" }
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }]
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
