@@ -5,13 +5,14 @@ import { Check, MessageCircle, ShoppingCart, Zap } from "lucide-react";
 import type { Metadata } from "next";
 import { BrewingTimer } from "@/components/commerce/brewing-timer";
 import { FlavorWheel } from "@/components/commerce/flavor-wheel";
+import { InquiryAction } from "@/components/commerce/inquiry-action";
 import { StrengthMeter } from "@/components/commerce/strength-meter";
 import { JsonLd } from "@/components/json-ld";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { products } from "@/lib/data";
 import { getStoreProductBySlug } from "@/lib/supabase/products";
-import { formatInr, whatsappLink } from "@/lib/utils";
+import { formatInr } from "@/lib/utils";
 import { pageMetadata, productSchema } from "@/lib/seo";
 
 export const revalidate = 60;
@@ -60,12 +61,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <p className="mt-6 font-display text-4xl text-brand-ember">{formatInr(product.price)}<span className="text-base font-sans text-brand-dark/55"> / kg sample price</span></p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href={whatsappLink(`Hello Green Hub, I want to buy ${product.name}. Please share availability and pricing.`)} target="_blank" rel="noreferrer">
-              <Button variant="gold" size="lg"><ShoppingCart className="h-4 w-4" />Buy Now</Button>
-            </a>
-            <a href={whatsappLink(`Hello Green Hub, I need bulk pricing for ${product.name}.`)} target="_blank" rel="noreferrer">
-              <Button variant="outline" size="lg"><MessageCircle className="h-4 w-4" />WhatsApp Inquiry</Button>
-            </a>
+            <InquiryAction
+              inquiryType="Product Buy Now"
+              message={`Hello Green Hub, I want to buy ${product.name}. Please share availability and pricing.`}
+              variant="gold"
+              size="lg"
+            >
+              <ShoppingCart className="h-4 w-4" />Buy Now
+            </InquiryAction>
+            <InquiryAction
+              inquiryType="Product Bulk Pricing"
+              message={`Hello Green Hub, I need bulk pricing for ${product.name}.`}
+              variant="outline"
+              size="lg"
+            >
+              <MessageCircle className="h-4 w-4" />WhatsApp Inquiry
+            </InquiryAction>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">

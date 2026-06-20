@@ -37,13 +37,19 @@ export function InquiryForm({ mode = "Wholesale" }: { mode?: "Wholesale" | "Expo
       `Message: ${values.message}`
     ].join("\n");
 
-    setSubmitNote("Saving inquiry and opening WhatsApp/email...");
-    await fetch("/api/inquiries", {
+    setSubmitNote("Saving inquiry...");
+    const response = await fetch("/api/inquiries", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values)
     }).catch(() => null);
 
+    if (!response?.ok) {
+      setSubmitNote("Inquiry could not be saved. Please try again or contact us on WhatsApp.");
+      return;
+    }
+
+    setSubmitNote("Inquiry saved. Opening WhatsApp/email...");
     window.open(whatsappLink(message), "_blank", "noreferrer");
     window.location.href = mailtoLink(`Green Hub ${values.inquiryType} Inquiry`, message);
   };

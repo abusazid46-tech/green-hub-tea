@@ -3,8 +3,9 @@ import Link from "next/link";
 import { ArrowRight, MessageCircle, ShoppingBag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { InquiryAction } from "@/components/commerce/inquiry-action";
 import { Product } from "@/lib/data";
-import { formatInr, whatsappLink } from "@/lib/utils";
+import { formatInr } from "@/lib/utils";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
@@ -43,11 +44,15 @@ export function ProductCard({ product }: { product: Product }) {
               Shop
             </Button>
           </Link>
-          <a href={whatsappLink(`Hello Green Hub, I want to inquire about ${product.name}.`)} target="_blank" rel="noreferrer">
-            <Button variant="outline" size="icon" aria-label={`WhatsApp inquiry for ${product.name}`}>
-              <MessageCircle className="h-4 w-4" />
-            </Button>
-          </a>
+          <InquiryAction
+            inquiryType="Product WhatsApp Inquiry"
+            message={`Hello Green Hub, I want to inquire about ${product.name}.`}
+            variant="outline"
+            size="icon"
+            ariaLabel={`WhatsApp inquiry for ${product.name}`}
+          >
+            <MessageCircle className="h-4 w-4" />
+          </InquiryAction>
           <Link href={`/product/${product.slug}`}>
             <Button variant="ghost" size="icon" aria-label={`View ${product.name}`}>
               <ArrowRight className="h-4 w-4" />
