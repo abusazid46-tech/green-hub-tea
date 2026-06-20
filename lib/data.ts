@@ -198,12 +198,50 @@ export const highlights = [
 ];
 
 export const whyChoose = [
-  { title: "Direct Assam Sourcing", text: "Tea selected from Assam supply networks with strong local knowledge from Guwahati.", icon: Leaf },
-  { title: "Export Quality", text: "Built for global inquiries with documentation-focused support and dependable fulfillment.", icon: Globe2 },
-  { title: "FSSAI Certified", text: "Products listed with FSSAI certification, shelf-life clarity, and quality checks.", icon: BadgeCheck },
-  { title: "Sustainable Practices", text: "A thoughtful supplier model focused on naturally grown agricultural products from the region.", icon: Sparkles },
-  { title: "Fast Delivery", text: "Pan India supply with on-time shipment as a core business promise.", icon: PackageCheck },
-  { title: "Premium Taste", text: "Aromatic, healthy, strong cups selected for hotels, cafes, distributors, and connoisseurs.", icon: Timer }
+  { title: "Premium Assam Teas", text: "Assam Tea, CTC Tea, Black Tea, and Assam Gold Orthodox Tea selected for dependable flavor and aroma.", icon: Leaf },
+  { title: "Bulk & Loose Supply", text: "Flexible supply options for tea traders, retailers, distributors, hotels, cafes, and business buyers.", icon: PackageCheck },
+  { title: "Consistent Freshness", text: "Products are managed for consistent taste, aroma, freshness, and reliable buyer confidence.", icon: BadgeCheck },
+  { title: "Wholesale Pricing", text: "Competitive pricing for repeat trade, bulk sourcing, private label, and growing retail networks.", icon: Scale },
+  { title: "Nationwide Distribution", text: "Guwahati-based supply support for customers and businesses across India.", icon: Truck },
+  { title: "Prompt Service", text: "A customer-centric approach shaped around fast responses, clear details, and long-term relationships.", icon: Timer }
+];
+
+export const missionVision = [
+  {
+    title: "Our Mission",
+    text: "To bring the authentic taste of Assam to tea lovers and businesses across India through premium sourcing, dependable wholesale supply, and prompt customer service.",
+    icon: Leaf
+  },
+  {
+    title: "Our Vision",
+    text: "To become a trusted national tea supply partner known for quality assurance, ethical business practices, consistent freshness, and long-term customer relationships.",
+    icon: Globe2
+  }
+];
+
+export const aboutStats = [
+  { label: "Established", value: "2018" },
+  { label: "Base", value: "Guwahati" },
+  { label: "Supply", value: "Bulk & Loose" },
+  { label: "Reach", value: "Pan India" }
+];
+
+export const testimonials = [
+  {
+    quote: "Green Hub gives us a dependable Assam tea supply with consistent aroma, liquor, and freshness for repeat customers.",
+    name: "Wholesale Tea Buyer",
+    role: "Retail Distribution"
+  },
+  {
+    quote: "Their CTC and black tea options are practical for business use, with clear pricing conversations and prompt service.",
+    name: "Cafe Procurement Lead",
+    role: "Hospitality Buyer"
+  },
+  {
+    quote: "We value Green Hub for bulk supply flexibility and the confidence that the product quality stays consistent.",
+    name: "Regional Distributor",
+    role: "Trade Partner"
+  }
 ];
 
 export const buyerTypes = [

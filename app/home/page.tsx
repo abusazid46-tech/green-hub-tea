@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { blogPosts, buyerTypes, heroImage, highlights, whyChoose } from "@/lib/data";
+import { aboutStats, blogPosts, buyerTypes, heroImage, highlights, testimonials, whyChoose } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import { getStoreProducts } from "@/lib/supabase/products";
 import { whatsappLink } from "@/lib/utils";
@@ -62,6 +62,32 @@ export default async function HomePage() {
               </div>
             ))}
           </MotionReveal>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white">
+        <div className="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <SectionHeading
+              align="left"
+              eyebrow="About Green Hub"
+              title="A trusted Guwahati supplier for premium Assam tea."
+              text="Green Hub supplies Assam Tea, CTC Tea, Black Tea, and Assam Gold Orthodox Tea in bulk and loose quantities for traders, retailers, distributors, and business buyers across India."
+            />
+            <Link href="/about" className="mt-7 inline-flex text-sm font-bold text-brand-forest underline decoration-brand-gold underline-offset-4">
+              Read Our Story
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {aboutStats.map((item) => (
+              <Card key={item.label}>
+                <CardContent>
+                  <p className="font-display text-3xl text-brand-forest">{item.value}</p>
+                  <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark/48">{item.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -161,13 +187,14 @@ export default async function HomePage() {
 
       <section className="section-padding bg-white">
         <div className="container-x">
-          <SectionHeading eyebrow="Client Notes" title="Premium buyers need a supplier who answers fast and ships clean." />
+          <SectionHeading eyebrow="Testimonials" title="Premium buyers need a supplier who answers fast and ships clean." />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {["The black tea has the color and strength our cafe menu needs.", "Their product specs make dealer discussions clear and quick.", "A dependable Assam supplier for bulk, packaging, and export planning."].map((quote, index) => (
-              <div key={quote} className="glass rounded-lg border-brand-forest/10 bg-brand-forest/7 p-6">
+            {testimonials.map((item) => (
+              <div key={item.name} className="glass rounded-lg border-brand-forest/10 bg-brand-forest/7 p-6">
                 <p className="font-display text-5xl text-brand-gold">&quot;</p>
-                <p className="text-sm leading-7 text-brand-dark/70">{quote}</p>
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-brand-forest">Buyer Review {index + 1}</p>
+                <p className="text-sm leading-7 text-brand-dark/70">{item.quote}</p>
+                <p className="mt-5 font-semibold text-brand-forest">{item.name}</p>
+                <p className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-dark/45">{item.role}</p>
               </div>
             ))}
           </div>

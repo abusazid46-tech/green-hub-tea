@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { verifyAdminRequest } from "@/lib/supabase/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 import { getStoreProducts } from "@/lib/supabase/products";
@@ -34,6 +35,11 @@ export async function POST(request: Request) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  revalidatePath("/");
+  revalidatePath("/home");
+  revalidatePath("/shop");
+  revalidatePath(`/product/${parsed.data.slug}`);
 
   return NextResponse.json({ product: data }, { status: 201 });
 }
