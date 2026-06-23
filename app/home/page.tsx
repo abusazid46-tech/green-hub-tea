@@ -36,7 +36,7 @@ export default async function HomePage() {
               From The Finest Tea Gardens Of Assam To The World
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78 md:text-xl">
-              Premium Assam Tea crafted for connoisseurs, retailers, hotels, cafes, distributors, and global buyers.
+              Premium Assam Tea crafted for tea lovers, retailers, hotels, cafes, distributors, and global buyers.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/shop">
